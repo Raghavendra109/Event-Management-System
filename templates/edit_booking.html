@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Edit Booking</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right,#0f2027,#203a43,#2c5364);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #1a1a2e;
+    background: #f9fafb;
+    outline: none;
+    margin-bottom: 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+    background: #fff;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+
+  button[type="submit"]:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .btn-back {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: #667eea;
+    border: 1.5px solid #667eea;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-back:hover {
+    background: #667eea;
+    color: #fff;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h2>Edit Event</h2>
+
+  <form method="POST">
+    <label>Event Name</label>
+    <input type="text"
+           name="event_name"
+           value="{{ booking['event_name'] }}"
+           placeholder="Event Name" readonly>
+
+    <label>Date</label>
+    <input type="date"
+           name="date" id="edate"
+           value="{{ booking['date'] }}" required>
+    <script>
+        let today=new Date().toISOString().split("T")[0];
+        document.getElementById("edate").min=today;
+    </script>
+
+    <label>Venue</label>
+    <input type="text"
+           name="venue"
+           value="{{ booking['venue'] }}"
+           placeholder="Venue" required>
+
+    <label>Capacity</label>
+    <input type="number"
+           name="capacity"
+           value="{{ booking['capacity'] }}"
+           placeholder="Capacity"  min="1" required>
+
+    <label>Service</label>
+    <input name="service"
+           value="{{ booking['service'] }}"
+           placeholder="Service" required>
+
+    <button type="submit">Update Event</button>
+    <a href="/user_profile" class="btn-back">← Back to Profile</a>
+
+  </form>
+</div>
+</body>
+</html>

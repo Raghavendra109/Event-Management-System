@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Event</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            text-align: center;
+            color: white;
+        }
+        form {
+            background: white;
+            color: black;
+            padding: 20px;
+            margin: 50px auto;
+            width: 350px;
+            border-radius: 10px;
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+        }
+        button {
+            background: green;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Book Event: {{ event_name }}</h2>
+
+<form action="/submit_booking" method="POST">
+
+    <input type="hidden" name="event_name" value="{{ event_name }}">
+
+    <input type="text" name="username" placeholder="Your Name" required>
+    <input type="text" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" title="Enter exactly 10 digits" required>
+    <input type="email" name="email" placeholder="email is required" required>
+    <input type="text" name="venue" placeholder="Venue is required" required>
+    <input type="number" name="capacity" placeholder="Enter Capacity" min="1" required>
+
+    <label>Event Date:</label>
+    <input type="date" id="edate" name="date" required>
+    <script>
+        let today=new Date().toISOString().split("T")[0];
+        document.getElementById("edate").min=today;
+    </script>
+
+    <label>Services:</label><br>
+    <input type="checkbox" name="service" value="Decoration"> Decoration<br>
+    <input type="checkbox" name="service" value="Catering"> Catering<br>
+    <input type="checkbox" name="service" value="Music"> Music<br>
+
+    <button type="submit">Confirm Booking</button>
+    <a href="user_dashboard" class="abtn">Logout</a>
+</form>
+
+</body>
+</html>

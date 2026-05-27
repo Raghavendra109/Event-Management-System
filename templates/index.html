@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+
+:root {
+    --primary-blue: #1e3a8a;
+    --accent-gold: #fbbf24;
+    --bg-dark: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* --- NAVBAR --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--accent-gold);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    padding: 100px 10%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    max-width: 700px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+/* Styling for Login/Register links */
+.btn[href*="login"] {
+    background-color: var(--accent-gold);
+    color: #000;
+}
+
+.btn[href*="register"] {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* --- FEATURES SECTION --- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 50px 10%;
+    margin-bottom: 100px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent-gold);
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Entrance Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+        /* Update your variables or root if needed */
+:root {
+    --gradient-speed: 5s;
+}
+
+/*  Center the Event Manager H2 in the Nav */
+nav {
+    display: flex;
+    justify-content: center; /* Centers the logo/H2 */
+    align-items: center;
+    position: relative;
+    padding: 1.5rem 5%;
+    min-height: 80px;
+}
+
+/* If you want the Login/Register links to stay on the right while H2 is centered */
+nav div:last-child {
+    position: absolute;
+    right: 5%;
+}
+
+/* 2. Animated Gradient Effect for H2 and H1 */
+nav h2, .hero h1 {
+    background: linear-gradient(
+        to right,
+        #fbbf24, #f87171, #818cf8, #fbbf24
+    );
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow var(--gradient-speed) linear infinite;
+    font-weight: 800;
+}
+
+/* Adjust size for the centered Nav heading */
+nav h2 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* Adjust size for the Hero heading */
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 3. The Animation Keyframes */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 300% center;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h2> Event Managagment</h2>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Plan Your Events Easily</h1>
+    <p>
+        Book and manage events with ease. Admins can create and control events,
+        while users can explore and book their favorite events instantly.
+    </p>
+
+    <div class="buttons">
+        <a href="/login" class="btn">Login</a>
+        <a href="/register" class="btn">Register</a>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+    <div class="card">
+        <h3>👨‍💼 Admin Control</h3>
+        <p>Add, edit, and delete events with full control.</p>
+    </div>
+
+    <div class="card">
+        <h3>🎫 Easy Booking</h3>
+        <p>Users can book events quickly with one click.</p>
+    </div>
+
+    <div class="card">
+        <h3>🔔 Notifications</h3>
+        <p>Admin gets notified when a booking is made.</p>
+    </div>
+</div>
+
+</body>
+</html>

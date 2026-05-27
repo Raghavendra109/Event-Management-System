@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(to right, #2a2f3a, #0072ff,#334155);
+        }
+
+        /* Navbar */
+        nav {
+            background: #0f172a;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+        nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 90%;
+    }
+     nav a:hover {
+        color:red;
+        text-decoration:underline;
+        }
+
+
+        /* Cards container */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* Event card */
+        .card {
+            background: white;
+            width: 250px;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px gray;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        /* Button */
+        .btn {
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #218838;
+        }
+        .menu{
+            position:center;
+            margin-bottom:25px;
+            right:10px;
+            text-align:center;
+
+
+}
+        .abtn{
+            background:linear-gradient(135deg,#5fd0ff,#4bb8f0);
+            color:white;
+            border-radius:20%;
+            padding:10px;
+            font-size:16px;
+            border:none;
+            cursor:pointer;
+            box-shadow:0 0 15px rgba(95,208,255,0.8)
+            transition:0.3s;
+
+
+        }
+        .abtn:hover{
+            color:white;
+            background:red;
+            box-shadow:0 0 50px black;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+<!-- ✅ Popup Message -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      alert("{{messages[0] }}");
+    </script>
+  {% endif %}
+{% endwith %}
+
+<!-- Navbar -->
+<nav>
+    <h3>User Dashboard</h3>
+    <div class="menu">
+        <a href="{{ url_for('user_profile') }}" class="abtn">View Profile</a>
+        <!--<a href="user_profile">profile</a>-->
+       <!--  <a href="logout">Logout</a>-->
+    </div>
+       <div class="menu">
+        <a href="/logout" class="abtn">Logout</a>
+    </div>
+</nav>
+
+<!-- Event Cards -->
+<div class="container">
+
+    {% for event in events %}
+    <div class="card">
+
+        <!-- Event Image -->
+        <img src="{{ url_for('static', filename='images/' + event[2]) }}" alt="event">
+
+        <!-- Event Name -->
+        <h3>{{ event[1] }}</h3>
+
+        <!-- Book Now Button -->
+        <form action="/book_event" method="GET">
+            <input type="hidden" name="event_name" value="{{ event[1] }}">
+            <button type="submit" class="btn">Book Now</button>
+        </form>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
