@@ -50,6 +50,7 @@ def init_db():
     conn = sqlite3.connect('events.db')
     conn.execute("""
         CREATE TABLE IF NOT EXISTS events(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             image TEXT
         )

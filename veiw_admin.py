@@ -11,9 +11,9 @@ conn.close()
 '''
 #TO DELETE
 import sqlite3
-conn=sqlite3.connect('events.db')
+conn=sqlite3.connect('bookings.db')
 cursor=conn.cursor()
-cursor.execute("delete  from  events")
+cursor.execute("delete  from  bookings")
 conn.commit()
 conn.close()
 print("deleted")
